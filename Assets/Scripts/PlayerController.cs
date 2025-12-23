@@ -2,11 +2,33 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController Instance;
+
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Animator animator;
 
     [SerializeField] private float moveSpeed;
     public Vector3 playerMoveDirection;
+    public float playerMaxHealth;
+    public float playerHealth;
+
+
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    void Start()
+    {
+        playerHealth = playerMaxHealth;
+    }
 
     // Update is called once per frame
     void Update()
@@ -26,8 +48,19 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
+    void FixedUpdate()
     {
         rb.linearVelocity = new Vector2(playerMoveDirection.x * moveSpeed, playerMoveDirection.y * moveSpeed);
+    }
+
+    public void TakeDamage(float damage)
+    {
+        playerHealth -= damage;
+        UIController.Instance.UpdateHealthSlider();
+        if (playerHealth <= 0)
+        {
+            gameObject.SetActive(false);
+            GameManager.Instance.GameOver();
+        }
     }
 }

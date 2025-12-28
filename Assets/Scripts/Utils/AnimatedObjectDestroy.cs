@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class AnimatedObjectDestro : MonoBehaviour
+public class AnimatedObjectDestroy : MonoBehaviour
 {
     [SerializeField] private Animator animator;
 

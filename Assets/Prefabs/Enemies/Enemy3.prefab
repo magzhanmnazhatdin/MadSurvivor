@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 2877801623387483754}
   - component: {fileID: 447001195988251871}
   - component: {fileID: 779310250309921605}
+  - component: {fileID: 4133301493900288076}
   - component: {fileID: 689123713600844988}
   - component: {fileID: 4932175697223696738}
-  - component: {fileID: 4133301493900288076}
   m_Layer: 7
   m_Name: Enemy3
   m_TagString: Enemy
@@ -82,7 +82,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 1242506925
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: -4606552108516508874, guid: 7eb9a777549d2b549a75f900915a9b61, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -117,6 +117,26 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &4133301493900288076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1511891788647647190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3814a01f9fd4b3b4ca632dc133e7932f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Enemy
+  spriteRenderer: {fileID: 447001195988251871}
+  rb: {fileID: 689123713600844988}
+  moveSpeed: 2
+  damage: 3
+  health: 20
+  experienceToGive: 3
+  pushTime: 0.3
+  destroyEffect: {fileID: 1256550274971701906, guid: 79c6de16efbd3ae43a962f5119468871, type: 3}
 --- !u!50 &689123713600844988
 Rigidbody2D:
   serializedVersion: 5
@@ -180,22 +200,6 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0.60263014}
   m_Radius: 0.69638014
---- !u!114 &4133301493900288076
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1511891788647647190}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3814a01f9fd4b3b4ca632dc133e7932f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  spriteRenderer: {fileID: 447001195988251871}
-  rb: {fileID: 689123713600844988}
-  moveSpeed: 2
-  destroyEffect: {fileID: 1256550274971701906, guid: 79c6de16efbd3ae43a962f5119468871, type: 3}
 --- !u!1 &7925143050341142801
 GameObject:
   m_ObjectHideFlags: 0
@@ -273,7 +277,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 1242506925
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: d0846553627f6d145acc8203752eb317, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

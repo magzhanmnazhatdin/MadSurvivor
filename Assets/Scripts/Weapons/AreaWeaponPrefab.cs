@@ -41,8 +41,12 @@ public class AreaWeaponPrefab : MonoBehaviour
         counter -= Time.deltaTime;
         if (counter <= 0) {
             counter = weapon.stats[weapon.weaponLevel].speed;
-            for  (int i = 0; i < enemiesInRange.Count; i++) {
-                enemiesInRange[i].TakeDamage(weapon.stats[weapon.weaponLevel].damage);
+            for (int i = enemiesInRange.Count - 1; i >= 0; i--) {
+                if (enemiesInRange[i] == null) {
+                    enemiesInRange.RemoveAt(i);
+                } else {
+                    enemiesInRange[i].TakeDamage(weapon.stats[weapon.weaponLevel].damage);
+                }
             }
         }
 
@@ -69,7 +73,7 @@ public class AreaWeaponPrefab : MonoBehaviour
     {
         if (collider.CompareTag("Enemy"))
         {
-            enemiesInRange.Add(collider.GetComponent<Enemy>());
+            enemiesInRange.Remove(collider.GetComponent<Enemy>());
         }
     }
 

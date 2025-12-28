@@ -11,6 +11,10 @@ public class AudioController : MonoBehaviour
     public AudioSource areaWeaponSpawn;
     public AudioSource areaWeaponDespawn;
     public AudioSource gameOver;
+    public AudioSource spinWeaponSpawn;
+    public AudioSource spinWeaponDespawn;
+    public AudioSource directionalWeaponSpawn;
+    public AudioSource directionalWeaponHit;
 
     private void Awake()
     {

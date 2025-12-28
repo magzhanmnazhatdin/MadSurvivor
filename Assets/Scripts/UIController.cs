@@ -14,7 +14,7 @@ public class UIController : MonoBehaviour
     public GameObject levelUpPanel;
     [SerializeField] private TMP_Text timerText;
 
-    public LavelUpButton[] levelUpButtons;
+    public LevelUpButton[] levelUpButtons;
 
     void Awake()
     {

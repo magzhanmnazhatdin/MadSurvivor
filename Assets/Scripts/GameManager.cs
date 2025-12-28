@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     public float gameTime;
-    public bool gameACtive;
+    public bool gameActive;
 
     void Awake()
     {
@@ -22,12 +22,12 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        gameACtive = true;
+        gameActive = true;
     }
 
     void Update()
     {
-        if (gameACtive) {
+        if (gameActive) {
             gameTime += Time.deltaTime;
             UIController.Instance.UpdateTimer(gameTime);
 
@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        gameACtive = false;
+        gameActive = false;
         StartCoroutine(ShowGameOverScreen());
     }
 
@@ -58,17 +58,20 @@ public class GameManager : MonoBehaviour
 
     public void Pause()
     {
-        if (UIController.Instance.pausePanel.activeSelf == false && UIController.Instance.gameOverPanel.activeSelf == false)
+        if (UIController.Instance.levelUpPanel.activeSelf == false)
         {
-            UIController.Instance.pausePanel.SetActive(true);
-            Time.timeScale = 0f;
-            AudioController.Instance.PlaySound(AudioController.Instance.pause);
-        }
-        else
-        {
-            UIController.Instance.pausePanel.SetActive(false);
-            Time.timeScale = 1f;
-            AudioController.Instance.PlaySound(AudioController.Instance.unpause);
+            if (UIController.Instance.pausePanel.activeSelf == false && UIController.Instance.gameOverPanel.activeSelf == false)
+            {
+                UIController.Instance.pausePanel.SetActive(true);
+                Time.timeScale = 0f;
+                AudioController.Instance.PlaySound(AudioController.Instance.pause);
+            }
+            else
+            {
+                UIController.Instance.pausePanel.SetActive(false);
+                Time.timeScale = 1f;
+                AudioController.Instance.PlaySound(AudioController.Instance.unpause);
+            }
         }
     }
 

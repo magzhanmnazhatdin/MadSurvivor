@@ -33,11 +33,11 @@ public class DirectionalWeaponPrefab : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (collider.CompareTag("Enemy"))
         {
-            Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+            Enemy enemy = collider.GetComponent<Enemy>();
             enemy.TakeDamage(weapon.stats[weapon.weaponLevel].damage);
             AudioController.Instance.PlaySound(AudioController.Instance.directionalWeaponHit);
         }

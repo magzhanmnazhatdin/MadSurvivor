@@ -28,6 +28,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float immunityDuration;
     [SerializeField] private float immunityTimer;
 
+    [Header("Regeneration")]
+    [SerializeField] private float secondsPerHP = 2f;
+    [SerializeField] private float regenDelay = 5f;
+    private float regenTimer;
+
     public List<int> playerLevels;
 
     void Awake()
@@ -81,6 +86,21 @@ public class PlayerController : MonoBehaviour
         {
             isImmune = false;
         }
+
+        // Passive regeneration
+        if (playerHealth < playerMaxHealth)
+        {
+            regenTimer += Time.deltaTime;
+            if (regenTimer >= regenDelay)
+            {
+                playerHealth += (1f / secondsPerHP) * Time.deltaTime;
+                if (playerHealth > playerMaxHealth)
+                {
+                    playerHealth = playerMaxHealth;
+                }
+                UIController.Instance.UpdateHealthSlider();
+            }
+        }
     }
 
     void FixedUpdate()
@@ -94,6 +114,7 @@ public class PlayerController : MonoBehaviour
         {
             isImmune = true;
             immunityTimer = immunityDuration;
+            regenTimer = 0f;
             playerHealth -= damage;
             UIController.Instance.UpdateHealthSlider();
             if (playerHealth <= 0)
@@ -146,7 +167,10 @@ public class PlayerController : MonoBehaviour
         UIController.Instance.LevelUpPanelOpen();
     }
 
-    private void AddWeapon(int index)
+    private void 
+        
+        
+        (int index)
     {
         activeWeapons.Add(inactiveWeapons[index]);
         inactiveWeapons[index].gameObject.SetActive(true);
